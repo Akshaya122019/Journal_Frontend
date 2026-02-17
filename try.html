@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Journals & Books – LibraryHub</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary:   #005f8e;
+      --primary-dk:#00426a;
+      --accent:    #e07b00;
+      --light-bg:  #f5f8fb;
+      --border:    #d6dfe8;
+      --text:      #1a2530;
+      --muted:     #6b7c8e;
+      --white:     #ffffff;
+      --tag-j:     #e8f3fb;
+      --tag-jc:    #005f8e;
+      --tag-b:     #fff4e5;
+      --tag-bc:    #b05f00;
+      --tag-t:     #edf7ed;
+      --tag-tc:    #2d7a2d;
+      --tag-r:     #f3eeff;
+      --tag-rc:    #6a3db5;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    /* ===================== HEADER ===================== */
+    .site-header {
+      background: var(--primary-dk);
+      padding: 12px 0;
+      border-bottom: 3px solid var(--accent);
+    }
+    .brand {
+      font-family: 'Lora', serif;
+      font-size: 1.55rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .brand span { color: var(--accent); }
+    .header-nav a {
+      color: #b8cfe0;
+      text-decoration: none;
+      font-size: .875rem;
+      margin-left: 18px;
+      transition: color .15s;
+    }
+    .header-nav a:hover { color: #fff; }
+
+    /* ===================== HERO SEARCH ===================== */
+    .hero-search {
+      background: linear-gradient(135deg, var(--primary-dk) 0%, var(--primary) 100%);
+      padding: 34px 0 28px;
+    }
+    .hero-search h1 {
+      font-family: 'Lora', serif;
+      font-size: 1.75rem;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .hero-search p { color: #9ec4dc; font-size: .92rem; margin-bottom: 18px; }
+
+    .search-bar {
+      display: flex;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.25);
+      border: 2px solid transparent;
+      transition: border-color .2s;
+    }
+    .search-bar:focus-within { border-color: var(--accent); }
+
+    .search-scope {
+      border: none;
+      border-right: 1px solid var(--border);
+      padding: 0 14px;
+      font-size: .85rem;
+      color: var(--text);
+      background: #f9fbfd;
+      cursor: pointer;
+      min-width: 130px;
+      outline: none;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .search-bar input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 13px 16px;
+      font-size: .97rem;
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--text);
+      background: transparent;
+    }
+    .search-bar input::placeholder { color: #a0b0be; }
+    .btn-search {
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      padding: 0 26px;
+      font-weight: 600;
+      font-size: .92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .btn-search:hover { background: #c46d00; }
+
+    .search-quick {
+      margin-top: 10px;
+      font-size: .82rem;
+      color: #7ab3cc;
+    }
+    .search-quick a {
+      color: #b8d8ea;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-left: 6px;
+    }
+    .search-quick a:hover { color: #fff; }
+
+    /* ===================== META / RESULTS BAR ===================== */
+    .results-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+    }
+    .results-count {
+      font-size: .88rem;
+      color: var(--muted);
+    }
+    .results-count strong { color: var(--text); font-weight: 600; }
+
+    .sort-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .sort-group select {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: .84rem;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+      background: #fff;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .sort-group select:focus { border-color: var(--primary); }
+
+    .view-toggle .btn-view {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all .15s;
+    }
+    .view-toggle .btn-view.active,
+    .view-toggle .btn-view:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Active filter chips */
+    .active-filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .filter-chip {
+      background: #e8f3fb;
+      color: var(--primary);
+      border: 1px solid #b3d4e8;
+      border-radius: 20px;
+      padding: 2px 10px 2px 12px;
+      font-size: .8rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .filter-chip .remove-chip {
+      cursor: pointer;
+      color: var(--primary);
+      font-size: .95rem;
+      line-height: 1;
+    }
+    .filter-chip .remove-chip:hover { color: var(--accent); }
+    #clearAllFilters {
+      font-size: .8rem;
+      color: var(--accent);
+      cursor: pointer;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    /* ===================== MAIN CONTENT AREA ===================== */
+    .content-wrapper {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 22px 16px;
+    }
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 258px 1fr 72px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    /* ===================== LEFT SIDEBAR ===================== */
+    .sidebar {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      position: sticky;
+      top: 12px;
+    }
+    .sidebar-header {
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 16px;
+      font-size: .88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .filter-section {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-section:last-child { border-bottom: none; }
+    .filter-section-title {
+      font-size: .82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .filter-section-title .toggle-icon {
+      font-size: .9rem;
+      transition: transform .2s;
+    }
+    .filter-section-title.collapsed .toggle-icon { transform: rotate(-90deg); }
+
+    /* Checkboxes */
+    .filter-check-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 5px 0;
+      cursor: pointer;
+      border-radius: 5px;
+      padding-left: 3px;
+      transition: background .1s;
+    }
+    .filter-check-item:hover { background: #f0f6fb; }
+    .filter-check-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .filter-check-item label {
+      cursor: pointer;
+      font-size: .88rem;
+      color: var(--text);
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .filter-count {
+      font-size: .76rem;
+      background: var(--light-bg);
+      color: var(--muted);
+      border-radius: 10px;
+      padding: 1px 7px;
+    }
+
+    /* Type tag badges inside filter */
+    .type-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .85rem;
+    }
+    .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .dot-j { background: var(--primary); }
+    .dot-b { background: var(--accent); }
+    .dot-t { background: #2d7a2d; }
+    .dot-r { background: #6a3db5; }
+
+    /* Subject dropdown */
+    .subject-dropdown {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: .88rem;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif;
+      transition: border-color .2s;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236b7c8e' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 28px;
+    }
+    .subject-dropdown:focus { border-color: var(--primary); }
+
+    /* Access type */
+    .access-badge {
+      font-size: .7rem;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+      letter-spacing: .3px;
+    }
+    .badge-oa { background: #fff4cc; color: #7a5500; }
+    .badge-sub { background: #e8f0fb; color: #1a4c8e; }
+
+    .btn-clear-section {
+      font-size: .75rem;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      text-decoration: underline;
+    }
+    .btn-clear-section:hover { color: var(--primary); }
+
+    /* ===================== RIGHT ALPHABET PANEL ===================== */
+    .alpha-panel {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 6px;
+      position: sticky;
+      top: 12px;
+      text-align: center;
+    }
+    .alpha-title {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .alpha-btn {
+      display: block;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      margin: 2px auto;
+      border-radius: 6px;
+      font-size: .88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: var(--light-bg);
+      color: var(--text);
+      transition: all .15s;
+      text-align: center;
+    }
+    .alpha-btn:hover:not(.disabled) {
+      background: var(--primary);
+      color: #fff;
+    }
+    .alpha-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,95,142,.35);
+    }
+    .alpha-btn.disabled {
+      color: #c5d0da;
+      cursor: default;
+    }
+    .alpha-all {
+      display: block;
+      width: 36px;
+      height: 22px;
+      line-height: 22px;
+      margin: 6px auto 0;
+      border-radius: 4px;
+      font-size: .68rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .3px;
+      transition: all .15s;
+    }
+    .alpha-all:hover, .alpha-all.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* ===================== ITEMS GRID ===================== */
+    .items-area { }
+
+    /* Alphabet group heading */
+    .alpha-group-head {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary-dk);
+      padding: 10px 0 6px;
+      margin-bottom: 6px;
+      border-bottom: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .alpha-group-head .group-count {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    /* Card */
+    .item-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: box-shadow .18s, border-color .18s, transform .15s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .item-card:hover {
+      box-shadow: 0 4px 18px rgba(0,95,142,.12);
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    /* Icon column */
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .icon-journal { background: var(--tag-j); color: var(--tag-jc); }
+    .icon-book    { background: var(--tag-b); color: var(--tag-bc); }
+    .icon-textbook{ background: var(--tag-t); color: var(--tag-tc); }
+    .icon-reference{ background: var(--tag-r); color: var(--tag-rc); }
+
+    .card-body { flex: 1; min-width: 0; }
+    .card-title {
+      font-size: .96rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 3px;
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .card-meta {
+      font-size: .8rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .meta-sep { width: 3px; height: 3px; background: var(--muted); border-radius: 50%; }
+
+    /* Type tag */
+    .type-tag {
+      font-size: .71rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+    .tag-journal    { background: var(--tag-j); color: var(--tag-jc); }
+    .tag-book       { background: var(--tag-b); color: var(--tag-bc); }
+    .tag-textbook   { background: var(--tag-t); color: var(--tag-tc); }
+    .tag-reference  { background: var(--tag-r); color: var(--tag-rc); }
+
+    .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .open-access {
+      font-size: .71rem;
+      font-weight: 700;
+      background: #fff3cd;
+      color: #7a5500;
+      padding: 2px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .card-arrow {
+      color: var(--border);
+      font-size: 1.1rem;
+      transition: color .15s;
+    }
+    .item-card:hover .card-arrow { color: var(--primary); }
+
+    /* No results */
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+    .no-results i { font-size: 3rem; opacity: .3; display: block; margin-bottom: 12px; }
+    .no-results h5 { font-size: 1.1rem; margin-bottom: 6px; }
+    .no-results p { font-size: .88rem; }
+
+    /* Grid view */
+    .items-area.grid-view .items-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+    .items-area.grid-view .item-card { flex-direction: column; }
+    .items-area.grid-view .card-right { flex-direction: row; }
+    .items-area.grid-view .card-title { white-space: normal; }
+
+    /* Load more */
+    #loadMoreBtn {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      background: #fff;
+      padding: 10px 32px;
+      border-radius: 6px;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      display: block;
+      margin: 20px auto 0;
+    }
+    #loadMoreBtn:hover { background: var(--primary); color: #fff; }
+
+    /* Skeleton loader */
+    .skeleton {
+      background: linear-gradient(90deg, #eef1f5 25%, #e2e7ed 50%, #eef1f5 75%);
+      background-size: 400% 100%;
+      animation: shimmer 1.2s infinite;
+      border-radius: 6px;
+    }
+    @keyframes shimmer {
+      0% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+    .skel-card { height: 78px; margin-bottom: 10px; border-radius: 9px; }
+
+    .results-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 2px 0;
+    }
+    .results-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .results-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* ===================== MOBILE FILTER BUTTON ===================== */
+    .mobile-filter-btn {
+      display: none;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: .88rem;
+      font-weight: 600;
+      cursor: pointer;
+      gap: 7px;
+      align-items: center;
+      margin-bottom: 14px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Sidebar backdrop */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.5);
+      z-index: 9998;
+    }
+    .sidebar-backdrop.show { display: block; }
+
+    /* ===================== RESPONSIVE BREAKPOINTS ===================== */
+
+    /* ---------- TABLET: 992px–1199px ---------- */
+    @media (max-width: 1199px) {
+      .layout-grid { grid-template-columns: 240px 1fr; }
+      .alpha-panel { display: none !important; }
+    }
+
+    /* ---------- SMALL TABLET: 768px–991px ---------- */
+    @media (max-width: 991px) {
+      .layout-grid { grid-template-columns: 220px 1fr; gap: 14px; }
+      .hero-search { padding: 24px 0 20px; }
+      .hero-search h1 { font-size: 1.45rem; }
+      .search-scope { min-width: 105px; font-size: .8rem; }
+      .search-bar input { padding: 11px 12px; font-size: .9rem; }
+      .btn-search { padding: 0 16px; font-size: .84rem; }
+      .content-wrapper { padding: 16px 12px; }
+      .results-bar .container-xl { padding-left: 12px; padding-right: 12px; }
+    }
+
+    /* ---------- MOBILE: ≤767px ---------- */
+    @media (max-width: 767px) {
+
+      /* Layout: single column, sidebar slides in */
+      .layout-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      /* Sidebar becomes a fixed off-canvas drawer */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 280px;
+        height: 100vh;
+        z-index: 9999;
+        border-radius: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        transition: left .28s cubic-bezier(.4,0,.2,1);
+        box-shadow: 4px 0 24px rgba(0,0,0,.22);
+      }
+      .sidebar.open { left: 0; }
+
+      /* Show mobile filter button */
+      .mobile-filter-btn { display: flex; }
+
+      /* Hero search shrink */
+      .hero-search { padding: 20px 0 16px; }
+      .hero-search h1 { font-size: 1.25rem; margin-bottom: 4px; }
+      .hero-search p { font-size: .82rem; margin-bottom: 12px; }
+
+      /* Search bar stacks scope above on very small */
+      .search-bar { flex-wrap: wrap; border-radius: 8px; }
+      .search-scope {
+        min-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 9px 14px;
+        border-radius: 0;
+        font-size: .85rem;
+      }
+      .search-bar input {
+        flex: 1;
+        padding: 11px 14px;
+        font-size: .92rem;
+        min-width: 0;
+      }
+      .btn-search {
+        padding: 12px 18px;
+        font-size: .85rem;
+        border-radius: 0 0 6px 0;
+      }
+
+      /* Results bar */
+      .results-bar { padding: 8px 0; }
+      .results-bar .container-xl { padding-left: 12px; padding-right: 12px; }
+      .results-bar-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .results-bar-right { width: 100%; justify-content: space-between; }
+      .sort-group label { display: none; }
+      .sort-group { gap: 6px; }
+      .sort-group select { font-size: .8rem; padding: 4px 8px; }
+      .results-count { font-size: .82rem; }
+
+      /* Active filter chips wrap properly */
+      .active-filters { flex-wrap: wrap; }
+
+      /* Content area */
+      .content-wrapper { padding: 12px 10px; }
+
+      /* Cards */
+      .item-card { padding: 12px 13px; gap: 10px; }
+      .card-icon { width: 38px; height: 38px; font-size: 1.05rem; flex-shrink: 0; }
+      .card-title { font-size: .88rem; white-space: normal; }
+      .card-meta { font-size: .75rem; gap: 5px; }
+      .card-right { gap: 4px; }
+      .open-access { font-size: .68rem; padding: 2px 5px; }
+
+      /* Alpha group headings */
+      .alpha-group-head { font-size: 1.1rem; }
+
+      /* Grid view on mobile: single column */
+      .items-area.grid-view .items-list {
+        grid-template-columns: 1fr;
+      }
+
+      /* Load more button full width */
+      #loadMoreBtn { width: 100%; padding: 12px; }
+    }
+
+    /* ---------- EXTRA SMALL: ≤479px ---------- */
+    @media (max-width: 479px) {
+      .hero-search h1 { font-size: 1.1rem; }
+      .brand { font-size: 1.3rem; }
+
+      /* Keep search scope hidden on tiniest screens to save space */
+      .search-scope { display: none; }
+      .search-bar { flex-wrap: nowrap; }
+      .search-bar input { border-radius: 0; }
+      .btn-search { border-radius: 0 6px 6px 0; }
+
+      .item-card { padding: 10px 11px; gap: 8px; }
+      .card-icon { width: 34px; height: 34px; font-size: .95rem; }
+      .card-title { font-size: .84rem; }
+      .card-meta { font-size: .72rem; }
+
+      /* Meta sep dots hidden on tiny screens */
+      .meta-sep { display: none; }
+      .card-meta { gap: 4px; }
+
+      /* Sort select full width */
+      .sort-group select { width: 100%; }
+
+      .content-wrapper { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container-xl">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="#" class="brand">Library<span>Hub</span></a>
+      <nav class="header-nav d-none d-md-flex align-items-center">
+        <a href="#">Home</a>
+        <a href="#">Browse</a>
+        <a href="#">My List</a>
+        <a href="#" class="ms-3 btn btn-sm btn-outline-light px-3">Sign In</a>
+      </nav>
+      <button class="btn btn-outline-light btn-sm d-md-none"><i class="bi bi-list fs-5"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO SEARCH -->
+<section class="hero-search">
+  <div class="container-xl">
+    <h1>Browse Journals &amp; Books</h1>
+    <p>Search across thousands of academic journals, books, textbooks, and reference works.</p>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="search-bar">
+          <select class="search-scope" id="searchScope">
+            <option value="all">All</option>
+            <option value="journal">Journals</option>
+            <option value="book">Books</option>
+            <option value="textbook">Textbooks</option>
+            <option value="reference">Reference Books</option>
+          </select>
+          <input type="text" id="mainSearch" placeholder="Search by title, ISSN, subject, author…" autocomplete="off"/>
+          <button class="btn-search" id="searchBtn">
+            <i class="bi bi-search"></i> Search
+          </button>
+        </div>
+        <div class="search-quick">
+          Popular:
+          <a class="quick-link">Nature</a>
+          <a class="quick-link">Physics</a>
+          <a class="quick-link">Machine Learning</a>
+          <a class="quick-link">Biology</a>
+          <a class="quick-link">Economics</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS META BAR -->
+<div class="results-bar">
+  <div class="container-xl">
+    <div class="results-bar-inner">
+      <div class="results-bar-left">
+        <div class="results-count">
+          Showing <strong id="showCount">0</strong> of <strong id="totalCount">0</strong> results
+        </div>
+        <div id="activeFiltersWrap" class="active-filters d-none">
+          <span style="font-size:.8rem;color:var(--muted);">Filters:</span>
+          <div id="activeFilterChips"></div>
+          <button id="clearAllFilters">Clear all</button>
+        </div>
+      </div>
+      <div class="results-bar-right">
+        <div class="sort-group">
+          <label>Sort by:</label>
+          <select id="sortSelect">
+            <option value="alpha-asc">A → Z</option>
+            <option value="alpha-desc">Z → A</option>
+            <option value="type">Type</option>
+            <option value="relevance">Relevance</option>
+          </select>
+        </div>
+        <div class="view-toggle d-flex gap-1">
+          <button class="btn-view active" id="listViewBtn" title="List view"><i class="bi bi-list-ul"></i></button>
+          <button class="btn-view" id="gridViewBtn" title="Grid view"><i class="bi bi-grid-3x3-gap"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="content-wrapper">
+
+  <!-- Mobile filter toggle -->
+  <button class="mobile-filter-btn" id="mobileFilterBtn">
+    <i class="bi bi-funnel-fill"></i> Filters
+  </button>
+
+  <!-- Backdrop for mobile sidebar -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <div class="layout-grid">
+
+    <!-- ========= LEFT SIDEBAR ========= -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <i class="bi bi-funnel-fill"></i> Refine Results
+        <button class="ms-auto btn btn-sm btn-close btn-close-white d-md-none" id="closeSidebar" style="font-size:.7rem;"></button>
+      </div>
+
+      <!-- TYPE -->
+      <div class="filter-section">
+        <div class="filter-section-title" data-target="typeGroup">
+          Publication Type
+          <span class="toggle-icon"><i class="bi bi-chevron-down"></i></span>
+        </div>
+        <div id="typeGroup">
+          <div class="filter-check-item">
+            <input type="checkbox" id="chkJournal" class="type-filter" value="journal"/>
+            <label for="chkJournal">
+              <span class="type-label"><span class="dot dot-j"></span>Journals</span>
+              <span class="filter-count" id="countJournal">0</span>
+            </label>
+          </div>
+          <div class="filter-check-item">
+            <input type="checkbox" id="chkBook" class="type-filter" value="book"/>
+            <label for="chkBook">
+              <span class="type-label"><span class="dot dot-b"></span>Books</span>
+              <span class="filter-count" id="countBook">0</span>
+            </label>
+          </div>
+          <div class="filter-check-item">
+            <input type="checkbox" id="chkTextbook" class="type-filter" value="textbook"/>
+            <label for="chkTextbook">
+              <span class="type-label"><span class="dot dot-t"></span>Textbooks</span>
+              <span class="filter-count" id="countTextbook">0</span>
+            </label>
+          </div>
+          <div class="filter-check-item">
+            <input type="checkbox" id="chkReference" class="type-filter" value="reference"/>
+            <label for="chkReference">
+              <span class="type-label"><span class="dot dot-r"></span>Reference Books</span>
+              <span class="filter-count" id="countReference">0</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBJECT AREA -->
+      <div class="filter-section">
+        <div class="filter-section-title" data-target="subjectGroup">
+          Subject Area
+          <span class="toggle-icon"><i class="bi bi-chevron-down"></i></span>
+        </div>
+        <div id="subjectGroup">
+          <select class="subject-dropdown" id="subjectFilter">
+            <option value="">— All Subjects —</option>
+            <option value="Agricultural and Biological Sciences">Agricultural &amp; Biological Sciences</option>
+            <option value="Arts and Humanities">Arts &amp; Humanities</option>
+            <option value="Biochemistry">Biochemistry, Genetics &amp; Molecular Biology</option>
+            <option value="Business Management">Business, Management &amp; Accounting</option>
+            <option value="Chemical Engineering">Chemical Engineering</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Decision Sciences">Decision Sciences</option>
+            <option value="Earth and Planetary Sciences">Earth &amp; Planetary Sciences</option>
+            <option value="Economics">Economics, Econometrics &amp; Finance</option>
+            <option value="Energy">Energy</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Environmental Science">Environmental Science</option>
+            <option value="Immunology">Immunology &amp; Microbiology</option>
+            <option value="Materials Science">Materials Science</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Medicine">Medicine &amp; Dentistry</option>
+            <option value="Neuroscience">Neuroscience</option>
+            <option value="Nursing">Nursing &amp; Health Professions</option>
+            <option value="Pharmacology">Pharmacology, Toxicology &amp; Pharmaceutical Science</option>
+            <option value="Physics">Physics &amp; Astronomy</option>
+            <option value="Psychology">Psychology</option>
+            <option value="Social Sciences">Social Sciences</option>
+            <option value="Veterinary">Veterinary Science &amp; Veterinary Medicine</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ACCESS TYPE -->
+      <div class="filter-section">
+        <div class="filter-section-title" data-target="accessGroup">
+          Access Type
+          <span class="toggle-icon"><i class="bi bi-chevron-down"></i></span>
+        </div>
+        <div id="accessGroup">
+          <div class="filter-check-item">
+            <input type="checkbox" id="chkOpenAccess" class="access-filter" value="open"/>
+            <label for="chkOpenAccess">
+              <span>🔓 Open Access</span>
+              <span class="filter-count" id="countOA">0</span>
+            </label>
+          </div>
+          <div class="filter-check-item">
+            <input type="checkbox" id="chkSubscription" class="access-filter" value="subscription"/>
+            <label for="chkSubscription">
+              <span>🔒 Subscription</span>
+              <span class="filter-count" id="countSub">0</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- YEAR RANGE -->
+      <div class="filter-section">
+        <div class="filter-section-title" data-target="yearGroup">
+          Publication Year
+          <span class="toggle-icon"><i class="bi bi-chevron-down"></i></span>
+        </div>
+        <div id="yearGroup">
+          <select class="subject-dropdown" id="yearFilter">
+            <option value="">— All Years —</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="before2018">Before 2018</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- CLEAR FILTERS -->
+      <div class="filter-section">
+        <button class="btn w-100 btn-sm btn-outline-danger" id="clearAllFiltersBtn">
+          <i class="bi bi-x-circle me-1"></i> Clear All Filters
+        </button>
+      </div>
+    </aside>
+
+    <!-- ========= CENTER CONTENT ========= -->
+    <main class="items-area" id="itemsArea">
+      <div id="skeletonLoader">
+        <div class="skeleton skel-card"></div>
+        <div class="skeleton skel-card"></div>
+        <div class="skeleton skel-card"></div>
+        <div class="skeleton skel-card"></div>
+        <div class="skeleton skel-card"></div>
+      </div>
+      <div id="itemsList"></div>
+      <div class="no-results d-none" id="noResults">
+        <i class="bi bi-search"></i>
+        <h5>No results found</h5>
+        <p>Try adjusting your filters or search query.</p>
+      </div>
+      <button id="loadMoreBtn" class="d-none">Load more results</button>
+    </main>
+
+    <!-- ========= RIGHT ALPHABET ========= -->
+    <aside class="alpha-panel" id="alphaPanel">
+      <div class="alpha-title">A–Z</div>
+      <button class="alpha-all active" id="alphaAll">All</button>
+      <div id="alphaBtns"></div>
+    </aside>
+
+  </div><!-- /layout-grid -->
+</div><!-- /content-wrapper -->
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+// ============================================================
+//  DATA – 80 sample items
+// ============================================================
+const DATA = [
+  { id:1,  slug:"acta-materialia",                           title:"Acta Materialia",                          type:"journal",   subject:"Materials Science",                   access:"subscription", year:2023, issn:"1359-6454" },
+  { id:2,  slug:"advanced-drug-delivery-reviews",            title:"Advanced Drug Delivery Reviews",           type:"journal",   subject:"Pharmacology",                        access:"open",         year:2024, issn:"0169-409X" },
+  { id:3,  slug:"algebra-and-its-applications",             title:"Algebra and Its Applications",             type:"textbook",  subject:"Mathematics",                         access:"subscription", year:2021, issn:"" },
+  { id:4,  slug:"annual-review-of-astronomy",               title:"Annual Review of Astronomy",               type:"journal",   subject:"Physics",                             access:"subscription", year:2023, issn:"0066-4146" },
+  { id:5,  slug:"applied-mathematics-and-computation",      title:"Applied Mathematics and Computation",      type:"journal",   subject:"Mathematics",                         access:"open",         year:2024, issn:"0096-3003" },
+  { id:6,  slug:"artificial-intelligence",                  title:"Artificial Intelligence",                  type:"journal",   subject:"Computer Science",                    access:"subscription", year:2023, issn:"0004-3702" },
+  { id:7,  slug:"atlas-of-human-anatomy",                   title:"Atlas of Human Anatomy",                   type:"reference", subject:"Medicine",                            access:"subscription", year:2022, issn:"" },
+  { id:8,  slug:"atmospheric-environment",                  title:"Atmospheric Environment",                  type:"journal",   subject:"Environmental Science",               access:"open",         year:2024, issn:"1352-2310" },
+  { id:9,  slug:"behavioural-brain-research",               title:"Behavioural Brain Research",               type:"journal",   subject:"Neuroscience",                        access:"subscription", year:2023, issn:"0166-4328" },
+  { id:10, slug:"biochemistry-a-short-course",              title:"Biochemistry: A Short Course",             type:"textbook",  subject:"Biochemistry",                        access:"subscription", year:2022, issn:"" },
+  { id:11, slug:"biochimica-et-biophysica-acta",            title:"Biochimica et Biophysica Acta",            type:"journal",   subject:"Biochemistry",                        access:"open",         year:2024, issn:"0006-3002" },
+  { id:12, slug:"bioresource-technology",                   title:"Bioresource Technology",                   type:"journal",   subject:"Energy",                              access:"subscription", year:2023, issn:"0960-8524" },
+  { id:13, slug:"brain-and-cognition",                      title:"Brain and Cognition",                      type:"journal",   subject:"Neuroscience",                        access:"open",         year:2024, issn:"0278-2626" },
+  { id:14, slug:"business-ethics-reference",                title:"Business Ethics Reference",                type:"reference", subject:"Business Management",                 access:"subscription", year:2021, issn:"" },
+  { id:15, slug:"cambridge-handbook-of-psychology",         title:"Cambridge Handbook of Psychology",         type:"reference", subject:"Psychology",                          access:"subscription", year:2022, issn:"" },
+  { id:16, slug:"cell-host-and-microbe",                    title:"Cell Host & Microbe",                      type:"journal",   subject:"Immunology",                          access:"open",         year:2024, issn:"1931-3128" },
+  { id:17, slug:"chemical-engineering-journal",             title:"Chemical Engineering Journal",             type:"journal",   subject:"Chemical Engineering",                access:"subscription", year:2023, issn:"1385-8947" },
+  { id:18, slug:"coastal-engineering",                      title:"Coastal Engineering",                      type:"journal",   subject:"Engineering",                         access:"open",         year:2024, issn:"0378-3839" },
+  { id:19, slug:"cognitive-psychology",                     title:"Cognitive Psychology",                     type:"journal",   subject:"Psychology",                          access:"subscription", year:2023, issn:"0010-0285" },
+  { id:20, slug:"computational-fluid-dynamics",             title:"Computational Fluid Dynamics",             type:"textbook",  subject:"Engineering",                         access:"subscription", year:2020, issn:"" },
+  { id:21, slug:"computer-networks-tanenbaum",              title:"Computer Networks (Tanenbaum)",            type:"textbook",  subject:"Computer Science",                    access:"subscription", year:2021, issn:"" },
+  { id:22, slug:"data-structures-and-algorithms",           title:"Data Structures and Algorithms",           type:"textbook",  subject:"Computer Science",                    access:"open",         year:2022, issn:"" },
+  { id:23, slug:"decision-support-systems",                 title:"Decision Support Systems",                 type:"journal",   subject:"Decision Sciences",                   access:"subscription", year:2023, issn:"0167-9236" },
+  { id:24, slug:"deep-learning-goodfellow",                 title:"Deep Learning (Goodfellow)",               type:"book",      subject:"Computer Science",                    access:"open",         year:2020, issn:"" },
+  { id:25, slug:"developmental-biology",                    title:"Developmental Biology",                    type:"journal",   subject:"Agricultural and Biological Sciences", access:"subscription", year:2024, issn:"0012-1606" },
+  { id:26, slug:"digital-signal-processing",               title:"Digital Signal Processing",                type:"journal",   subject:"Engineering",                         access:"open",         year:2023, issn:"1051-2004" },
+  { id:27, slug:"earth-and-planetary-science-letters",      title:"Earth and Planetary Science Letters",      type:"journal",   subject:"Earth and Planetary Sciences",        access:"open",         year:2024, issn:"0012-821X" },
+  { id:28, slug:"ecological-economics",                     title:"Ecological Economics",                     type:"journal",   subject:"Environmental Science",               access:"subscription", year:2023, issn:"0921-8009" },
+  { id:29, slug:"economics-of-education-review",            title:"Economics of Education Review",            type:"journal",   subject:"Economics",                           access:"subscription", year:2023, issn:"0272-7757" },
+  { id:30, slug:"electrochimica-acta",                      title:"Electrochimica Acta",                      type:"journal",   subject:"Chemistry",                           access:"open",         year:2024, issn:"0013-4686" },
+  { id:31, slug:"energy-policy",                            title:"Energy Policy",                            type:"journal",   subject:"Energy",                              access:"subscription", year:2023, issn:"0301-4215" },
+  { id:32, slug:"environmental-science-and-technology",     title:"Environmental Science & Technology",       type:"journal",   subject:"Environmental Science",               access:"open",         year:2024, issn:"0013-936X" },
+  { id:33, slug:"finance-and-stochastic",                   title:"Finance and Stochastic",                   type:"journal",   subject:"Economics",                           access:"subscription", year:2022, issn:"0949-2984" },
+  { id:34, slug:"food-chemistry",                           title:"Food Chemistry",                           type:"journal",   subject:"Agricultural and Biological Sciences", access:"open",         year:2024, issn:"0308-8146" },
+  { id:35, slug:"foundations-of-machine-learning",          title:"Foundations of Machine Learning",          type:"textbook",  subject:"Computer Science",                    access:"subscription", year:2021, issn:"" },
+  { id:36, slug:"free-radical-biology-and-medicine",        title:"Free Radical Biology and Medicine",        type:"journal",   subject:"Biochemistry",                        access:"subscription", year:2023, issn:"0891-5849" },
+  { id:37, slug:"frontiers-in-neuroscience",                title:"Frontiers in Neuroscience",                type:"journal",   subject:"Neuroscience",                        access:"open",         year:2024, issn:"1662-453X" },
+  { id:38, slug:"geomorphology",                            title:"Geomorphology",                            type:"journal",   subject:"Earth and Planetary Sciences",        access:"subscription", year:2023, issn:"0169-555X" },
+  { id:39, slug:"global-environmental-change",              title:"Global Environmental Change",              type:"journal",   subject:"Environmental Science",               access:"open",         year:2024, issn:"0959-3780" },
+  { id:40, slug:"gut-microbiome-handbook",                  title:"Gut Microbiome Handbook",                  type:"reference", subject:"Medicine",                            access:"subscription", year:2022, issn:"" },
+  { id:41, slug:"handbook-of-econometrics",                 title:"Handbook of Econometrics",                 type:"reference", subject:"Economics",                           access:"subscription", year:2020, issn:"" },
+  { id:42, slug:"hazardous-materials-journal",              title:"Hazardous Materials Journal",              type:"journal",   subject:"Chemical Engineering",                access:"subscription", year:2023, issn:"0304-3894" },
+  { id:43, slug:"human-brain-mapping",                      title:"Human Brain Mapping",                      type:"journal",   subject:"Neuroscience",                        access:"open",         year:2024, issn:"1065-9471" },
+  { id:44, slug:"hydrometallurgy",                          title:"Hydrometallurgy",                          type:"journal",   subject:"Materials Science",                   access:"subscription", year:2023, issn:"0304-386X" },
+  { id:45, slug:"ieee-transactions-on-information-theory",  title:"IEEE Transactions on Information Theory",  type:"journal",   subject:"Computer Science",                    access:"subscription", year:2024, issn:"0018-9448" },
+  { id:46, slug:"immunology-letters",                       title:"Immunology Letters",                       type:"journal",   subject:"Immunology",                          access:"subscription", year:2023, issn:"0165-2478" },
+  { id:47, slug:"inorganic-chemistry-essentials",           title:"Inorganic Chemistry Essentials",           type:"textbook",  subject:"Chemistry",                           access:"subscription", year:2021, issn:"" },
+  { id:48, slug:"international-journal-of-heat-and-mass-transfer", title:"International Journal of Heat and Mass Transfer", type:"journal", subject:"Engineering", access:"open", year:2024, issn:"0017-9310" },
+  { id:49, slug:"journal-of-alloys-and-compounds",          title:"Journal of Alloys and Compounds",          type:"journal",   subject:"Materials Science",                   access:"open",         year:2024, issn:"0925-8388" },
+  { id:50, slug:"journal-of-applied-psychology",            title:"Journal of Applied Psychology",            type:"journal",   subject:"Psychology",                          access:"subscription", year:2023, issn:"0021-9010" },
+  { id:51, slug:"journal-of-biological-chemistry",          title:"Journal of Biological Chemistry",          type:"journal",   subject:"Biochemistry",                        access:"open",         year:2024, issn:"0021-9258" },
+  { id:52, slug:"journal-of-cleaner-production",            title:"Journal of Cleaner Production",            type:"journal",   subject:"Environmental Science",               access:"open",         year:2024, issn:"0959-6526" },
+  { id:53, slug:"kidney-international",                     title:"Kidney International",                     type:"journal",   subject:"Medicine",                            access:"subscription", year:2023, issn:"0085-2538" },
+  { id:54, slug:"knowledge-based-systems",                  title:"Knowledge-Based Systems",                  type:"journal",   subject:"Computer Science",                    access:"subscription", year:2023, issn:"0950-7051" },
+  { id:55, slug:"lancet-oncology",                          title:"Lancet Oncology",                          type:"journal",   subject:"Medicine",                            access:"open",         year:2024, issn:"1470-2045" },
+  { id:56, slug:"linear-algebra-done-right",                title:"Linear Algebra Done Right",                type:"textbook",  subject:"Mathematics",                         access:"subscription", year:2021, issn:"" },
+  { id:57, slug:"machine-learning-an-applied-mathematics",  title:"Machine Learning: An Applied Mathematics", type:"textbook",  subject:"Mathematics",                         access:"open",         year:2022, issn:"" },
+  { id:58, slug:"marine-biology",                           title:"Marine Biology",                           type:"journal",   subject:"Agricultural and Biological Sciences", access:"open",         year:2024, issn:"0025-3162" },
+  { id:59, slug:"mathematical-methods-for-physics",         title:"Mathematical Methods for Physics",         type:"textbook",  subject:"Physics",                             access:"subscription", year:2021, issn:"" },
+  { id:60, slug:"mechanics-of-materials",                   title:"Mechanics of Materials",                   type:"journal",   subject:"Engineering",                         access:"subscription", year:2023, issn:"0167-6636" },
+  { id:61, slug:"medical-reference-compendium",             title:"Medical Reference Compendium",             type:"reference", subject:"Medicine",                            access:"subscription", year:2022, issn:"" },
+  { id:62, slug:"nature",                                   title:"Nature",                                   type:"journal",   subject:"Agricultural and Biological Sciences", access:"subscription", year:2024, issn:"0028-0836" },
+  { id:63, slug:"neural-networks",                          title:"Neural Networks",                          type:"journal",   subject:"Computer Science",                    access:"open",         year:2024, issn:"0893-6080" },
+  { id:64, slug:"neuroimage",                               title:"Neuroimage",                               type:"journal",   subject:"Neuroscience",                        access:"subscription", year:2023, issn:"1053-8119" },
+  { id:65, slug:"numerical-methods-for-engineers",          title:"Numerical Methods for Engineers",          type:"textbook",  subject:"Engineering",                         access:"subscription", year:2020, issn:"" },
+  { id:66, slug:"nursing-outlook",                          title:"Nursing Outlook",                          type:"journal",   subject:"Nursing",                             access:"open",         year:2024, issn:"0029-6554" },
+  { id:67, slug:"nutrition-research",                       title:"Nutrition Research",                       type:"journal",   subject:"Medicine",                            access:"subscription", year:2023, issn:"0271-5317" },
+  { id:68, slug:"optics-express",                           title:"Optics Express",                           type:"journal",   subject:"Physics",                             access:"open",         year:2024, issn:"1094-4087" },
+  { id:69, slug:"organic-chemistry-clayden",                title:"Organic Chemistry (Clayden)",              type:"textbook",  subject:"Chemistry",                           access:"subscription", year:2021, issn:"" },
+  { id:70, slug:"oxford-handbook-of-clinical-medicine",     title:"Oxford Handbook of Clinical Medicine",     type:"reference", subject:"Medicine",                            access:"subscription", year:2023, issn:"" },
+  { id:71, slug:"pattern-recognition",                      title:"Pattern Recognition",                      type:"journal",   subject:"Computer Science",                    access:"subscription", year:2023, issn:"0031-3203" },
+  { id:72, slug:"physical-review-letters",                  title:"Physical Review Letters",                  type:"journal",   subject:"Physics",                             access:"open",         year:2024, issn:"0031-9007" },
+  { id:73, slug:"physics-of-fluids",                        title:"Physics of Fluids",                        type:"journal",   subject:"Physics",                             access:"subscription", year:2023, issn:"1070-6631" },
+  { id:74, slug:"plant-science",                            title:"Plant Science",                            type:"journal",   subject:"Agricultural and Biological Sciences", access:"open",         year:2024, issn:"0168-9452" },
+  { id:75, slug:"quantum-computing-a-primer",               title:"Quantum Computing: A Primer",              type:"book",      subject:"Physics",                             access:"open",         year:2023, issn:"" },
+  { id:76, slug:"renewable-energy",                         title:"Renewable Energy",                         type:"journal",   subject:"Energy",                              access:"open",         year:2024, issn:"0960-1481" },
+  { id:77, slug:"research-policy",                          title:"Research Policy",                          type:"journal",   subject:"Social Sciences",                     access:"subscription", year:2023, issn:"0048-7333" },
+  { id:78, slug:"science-of-the-total-environment",         title:"Science of the Total Environment",         type:"journal",   subject:"Environmental Science",               access:"open",         year:2024, issn:"0048-9697" },
+  { id:79, slug:"social-science-and-medicine",              title:"Social Science & Medicine",                type:"journal",   subject:"Social Sciences",                     access:"subscription", year:2023, issn:"0277-9536" },
+  { id:80, slug:"soil-biology-and-biochemistry",            title:"Soil Biology and Biochemistry",            type:"journal",   subject:"Agricultural and Biological Sciences", access:"open",         year:2024, issn:"0038-0717" },
+  { id:81, slug:"statistical-learning-with-sparsity",       title:"Statistical Learning with Sparsity",       type:"book",      subject:"Mathematics",                         access:"open",         year:2021, issn:"" },
+  { id:82, slug:"structural-engineering-reference",         title:"Structural Engineering Reference",         type:"reference", subject:"Engineering",                         access:"subscription", year:2022, issn:"" },
+  { id:83, slug:"tetrahedron",                              title:"Tetrahedron",                              type:"journal",   subject:"Chemistry",                           access:"subscription", year:2023, issn:"0040-4020" },
+  { id:84, slug:"the-lancet",                               title:"The Lancet",                               type:"journal",   subject:"Medicine",                            access:"open",         year:2024, issn:"0140-6736" },
+  { id:85, slug:"toxicology-and-applied-pharmacology",      title:"Toxicology and Applied Pharmacology",      type:"journal",   subject:"Pharmacology",                        access:"subscription", year:2023, issn:"0041-008X" },
+  { id:86, slug:"ultrasound-in-medicine-and-biology",       title:"Ultrasound in Medicine and Biology",       type:"journal",   subject:"Medicine",                            access:"subscription", year:2023, issn:"0301-5629" },
+  { id:87, slug:"urban-studies",                            title:"Urban Studies",                            type:"journal",   subject:"Social Sciences",                     access:"subscription", year:2023, issn:"0042-0980" },
+  { id:88, slug:"vaccine",                                  title:"Vaccine",                                  type:"journal",   subject:"Immunology",                          access:"open",         year:2024, issn:"0264-410X" },
+  { id:89, slug:"veterinary-microbiology",                  title:"Veterinary Microbiology",                  type:"journal",   subject:"Veterinary",                          access:"subscription", year:2023, issn:"0378-1135" },
+  { id:90, slug:"vlsi-design-reference",                    title:"VLSI Design Reference",                    type:"reference", subject:"Engineering",                         access:"subscription", year:2022, issn:"" },
+  { id:91, slug:"water-research",                           title:"Water Research",                           type:"journal",   subject:"Environmental Science",               access:"open",         year:2024, issn:"0043-1354" },
+  { id:92, slug:"world-development",                        title:"World Development",                        type:"journal",   subject:"Social Sciences",                     access:"subscription", year:2023, issn:"0305-750X" },
+  { id:93, slug:"x-ray-crystallography-textbook",           title:"X-Ray Crystallography Textbook",           type:"textbook",  subject:"Chemistry",                           access:"subscription", year:2021, issn:"" },
+  { id:94, slug:"year-book-of-psychiatry",                  title:"Year Book of Psychiatry",                  type:"reference", subject:"Medicine",                            access:"subscription", year:2022, issn:"" },
+  { id:95, slug:"zebrafish-genetics-handbook",              title:"Zebrafish Genetics Handbook",              type:"reference", subject:"Biochemistry",                        access:"subscription", year:2023, issn:"" },
+  { id:96, slug:"zoological-journal-of-the-linnean-society",title:"Zoological Journal of the Linnean Society",type:"journal",   subject:"Agricultural and Biological Sciences", access:"open",         year:2024, issn:"0024-4082" },
+];
+
+// ============================================================
+//  STATE
+// ============================================================
+const state = {
+  query:       '',
+  types:       [],       // e.g. ['journal','book']
+  subject:     '',
+  access:      [],
+  year:        '',
+  alpha:       '',       // '' = all
+  sort:        'alpha-asc',
+  page:        1,
+  perPage:     20,
+};
+
+const typeIconMap = {
+  journal:   { icon: 'bi-journal-text',    cls: 'icon-journal',   tag: 'tag-journal',   label: 'Journal' },
+  book:      { icon: 'bi-book',            cls: 'icon-book',      tag: 'tag-book',      label: 'Book' },
+  textbook:  { icon: 'bi-book-half',       cls: 'icon-textbook',  tag: 'tag-textbook',  label: 'Textbook' },
+  reference: { icon: 'bi-bookmarks-fill',  cls: 'icon-reference', tag: 'tag-reference', label: 'Reference Book' },
+};
+
+// ============================================================
+//  CORE FILTER HELPER  – apply every filter except the ones listed in `skip`
+// ============================================================
+function filterData(skip) {
+  skip = skip || [];
+  let results = DATA.slice();
+
+  if (!skip.includes('query') && state.query) {
+    const q = state.query.toLowerCase();
+    results = results.filter(d =>
+      d.title.toLowerCase().includes(q) ||
+      d.subject.toLowerCase().includes(q) ||
+      (d.issn && d.issn.includes(q))
+    );
+  }
+
+  if (!skip.includes('scope')) {
+    const scope = $('#searchScope').val();
+    if (scope && scope !== 'all') {
+      results = results.filter(d => d.type === scope);
+    }
+  }
+
+  if (!skip.includes('type') && state.types.length) {
+    results = results.filter(d => state.types.includes(d.type));
+  }
+
+  if (!skip.includes('subject') && state.subject) {
+    results = results.filter(d => d.subject === state.subject);
+  }
+
+  if (!skip.includes('access') && state.access.length) {
+    results = results.filter(d => state.access.includes(d.access));
+  }
+
+  if (!skip.includes('year') && state.year) {
+    if (state.year === 'before2018') {
+      results = results.filter(d => d.year < 2018);
+    } else {
+      results = results.filter(d => d.year === parseInt(state.year));
+    }
+  }
+
+  if (!skip.includes('alpha') && state.alpha) {
+    results = results.filter(d => d.title.toUpperCase().startsWith(state.alpha));
+  }
+
+  return results;
+}
+
+// ============================================================
+//  FILTER & SORT  (full pipeline used for rendering)
+// ============================================================
+function applyFilters() {
+  let results = filterData();   // apply ALL filters
+
+  // Sort
+  results.sort((a, b) => {
+    if (state.sort === 'alpha-asc')  return a.title.localeCompare(b.title);
+    if (state.sort === 'alpha-desc') return b.title.localeCompare(a.title);
+    if (state.sort === 'type')       return a.type.localeCompare(b.type) || a.title.localeCompare(b.title);
+    return a.title.localeCompare(b.title);
+  });
+
+  return results;
+}
+
+// ============================================================
+//  COUNT FACETS
+//  Each facet counts items matching all OTHER active filters
+//  (so counts stay meaningful as you combine filters)
+// ============================================================
+function updateFacetCounts() {
+  // Type counts: skip the type filter so all types are always counted
+  const baseForType = filterData(['type']);
+  $('#countJournal').text(baseForType.filter(d => d.type === 'journal').length);
+  $('#countBook').text(baseForType.filter(d => d.type === 'book').length);
+  $('#countTextbook').text(baseForType.filter(d => d.type === 'textbook').length);
+  $('#countReference').text(baseForType.filter(d => d.type === 'reference').length);
+
+  // Access counts: skip the access filter
+  const baseForAccess = filterData(['access']);
+  $('#countOA').text(baseForAccess.filter(d => d.access === 'open').length);
+  $('#countSub').text(baseForAccess.filter(d => d.access === 'subscription').length);
+}
+
+// ============================================================
+//  RENDER
+// ============================================================
+function renderResults() {
+  const results = applyFilters();
+  state.page = 1;
+  updateFacetCounts();
+  updateActiveFilterChips();
+  renderList(results);
+  // Pass results WITHOUT the alpha filter so all valid letters remain clickable
+  // even when a specific letter is currently selected
+  updateAlphaCounts(filterData(['alpha']));
+}
+
+function renderList(results) {
+  const $list = $('#itemsList');
+  const $none = $('#noResults');
+  const $btn  = $('#loadMoreBtn');
+
+  $list.empty();
+
+  if (!results.length) {
+    $none.removeClass('d-none');
+    $btn.addClass('d-none');
+    $('#showCount').text(0);
+    $('#totalCount').text(0);
+    return;
+  }
+  $none.addClass('d-none');
+
+  const toShow = results.slice(0, state.page * state.perPage);
+  $('#showCount').text(toShow.length);
+  $('#totalCount').text(results.length);
+
+  // Group by first letter
+  const groups = {};
+  toShow.forEach(item => {
+    const letter = item.title[0].toUpperCase();
+    if (!groups[letter]) groups[letter] = [];
+    groups[letter].push(item);
+  });
+
+  Object.keys(groups).sort().forEach(letter => {
+    const $group = $('<div class="alpha-group mb-3"></div>');
+    $group.append(`<div class="alpha-group-head">${letter} <span class="group-count">${groups[letter].length} result${groups[letter].length!==1?'s':''}</span></div>`);
+    const $items = $('<div class="items-list"></div>');
+    groups[letter].forEach(item => {
+      $items.append(buildCard(item));
+    });
+    $group.append($items);
+    $list.append($group);
+  });
+
+  if (toShow.length < results.length) {
+    $btn.removeClass('d-none');
+    $btn.off('click').on('click', function() {
+      state.page++;
+      const more = results.slice(0, state.page * state.perPage);
+      $('#showCount').text(more.length);
+      const lastToShow = results.slice((state.page-1)*state.perPage, state.page*state.perPage);
+      // Append new items
+      lastToShow.forEach(item => {
+        const letter = item.title[0].toUpperCase();
+        const $existingGroup = $list.find(`.alpha-group-head:contains("${letter}")`).closest('.alpha-group');
+        if ($existingGroup.length) {
+          $existingGroup.find('.items-list').append(buildCard(item));
+          $existingGroup.find('.group-count').text(
+            parseInt($existingGroup.find('.group-count').text()) + 1 + ' result' + (parseInt($existingGroup.find('.group-count').text()) + 1 !== 1 ? 's' : '')
+          );
+        } else {
+          const $group = $('<div class="alpha-group mb-3"></div>');
+          $group.append(`<div class="alpha-group-head">${letter} <span class="group-count">1 result</span></div>`);
+          const $items = $('<div class="items-list"></div>');
+          $items.append(buildCard(item));
+          $group.append($items);
+          $list.append($group);
+        }
+      });
+      if (more.length >= results.length) $btn.addClass('d-none');
+    });
+  } else {
+    $btn.addClass('d-none');
+  }
+}
+
+function buildCard(item) {
+  const ti = typeIconMap[item.type];
+  const accessBadge = item.access === 'open'
+    ? '<span class="open-access">🔓 Open Access</span>'
+    : '';
+  return `
+    <a class="item-card" href="detail/${item.slug}.html">
+      <div class="card-icon ${ti.cls}">
+        <i class="bi ${ti.icon}"></i>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${item.title}</div>
+        <div class="card-meta">
+          <span class="type-tag ${ti.tag}">${ti.label}</span>
+          ${item.issn ? `<span class="meta-sep"></span><span>ISSN: ${item.issn}</span>` : ''}
+          <span class="meta-sep"></span>
+          <span>${item.subject}</span>
+          <span class="meta-sep"></span>
+          <span>${item.year}</span>
+        </div>
+      </div>
+      <div class="card-right">
+        ${accessBadge}
+        <i class="bi bi-chevron-right card-arrow"></i>
+      </div>
+    </a>
+  `;
+}
+
+// ============================================================
+//  ALPHABET PANEL
+// ============================================================
+function buildAlphaPanel() {
+  const $container = $('#alphaBtns');
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(letter => {
+    const btn = $(`<button class="alpha-btn" data-letter="${letter}">${letter}</button>`);
+    $container.append(btn);
+  });
+}
+
+function updateAlphaCounts(currentResults) {
+  const available = new Set(currentResults.map(d => d.title[0].toUpperCase()));
+  $('#alphaBtns .alpha-btn').each(function() {
+    const l = $(this).data('letter');
+    if (available.has(l)) {
+      $(this).removeClass('disabled');
+    } else {
+      $(this).addClass('disabled');
+    }
+  });
+}
+
+// ============================================================
+//  ACTIVE FILTER CHIPS
+// ============================================================
+function updateActiveFilterChips() {
+  const chips = [];
+
+  if (state.query) chips.push({ label: `"${state.query}"`, key: 'query' });
+  state.types.forEach(t => chips.push({ label: typeIconMap[t].label, key: 'type', val: t }));
+  if (state.subject) chips.push({ label: state.subject, key: 'subject' });
+  state.access.forEach(a => chips.push({ label: a === 'open' ? 'Open Access' : 'Subscription', key: 'access', val: a }));
+  if (state.year) chips.push({ label: state.year === 'before2018' ? 'Before 2018' : state.year, key: 'year' });
+  if (state.alpha) chips.push({ label: `Letter: ${state.alpha}`, key: 'alpha' });
+
+  const $wrap = $('#activeFiltersWrap');
+  const $chips = $('#activeFilterChips');
+  $chips.empty();
+
+  if (!chips.length) {
+    $wrap.addClass('d-none');
+    return;
+  }
+  $wrap.removeClass('d-none');
+
+  chips.forEach(c => {
+    const $chip = $(`
+      <span class="filter-chip">
+        ${c.label}
+        <span class="remove-chip" data-key="${c.key}" data-val="${c.val || ''}">&times;</span>
+      </span>
+    `);
+    $chips.append($chip);
+  });
+}
+
+function removeChip(key, val) {
+  if (key === 'query')   { state.query = ''; $('#mainSearch').val(''); }
+  if (key === 'type')    { state.types = state.types.filter(t => t !== val); $(`.type-filter[value="${val}"]`).prop('checked', false); }
+  if (key === 'subject') { state.subject = ''; $('#subjectFilter').val(''); }
+  if (key === 'access')  { state.access = state.access.filter(a => a !== val); $(`.access-filter[value="${val}"]`).prop('checked', false); }
+  if (key === 'year')    { state.year = ''; $('#yearFilter').val(''); }
+  if (key === 'alpha')   { state.alpha = ''; $('#alphaBtns .alpha-btn').removeClass('active'); $('#alphaAll').addClass('active'); }
+  renderResults();
+}
+
+function clearAll() {
+  state.query = ''; state.types = []; state.subject = '';
+  state.access = []; state.year = ''; state.alpha = '';
+  $('#mainSearch').val('');
+  $('.type-filter, .access-filter').prop('checked', false);
+  $('#subjectFilter, #yearFilter').val('');
+  $('#alphaBtns .alpha-btn').removeClass('active');
+  $('#alphaAll').addClass('active');
+  renderResults();
+}
+
+// ============================================================
+//  COLLAPSIBLE FILTER SECTIONS
+// ============================================================
+function initCollapsible() {
+  $('.filter-section-title').on('click', function() {
+    const targetId = $(this).data('target');
+    const $target = $('#' + targetId);
+    $target.slideToggle(180);
+    $(this).toggleClass('collapsed');
+  });
+}
+
+// ============================================================
+//  JQUERY EVENT BINDING
+// ============================================================
+$(function() {
+
+  // Show skeleton then render
+  setTimeout(() => {
+    $('#skeletonLoader').hide();
+    buildAlphaPanel();
+    renderResults();
+  }, 600);
+
+  // Search input (live)
+  let debounceTimer;
+  $('#mainSearch').on('input', function() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      state.query = $(this).val().trim();
+      state.alpha = '';
+      $('#alphaBtns .alpha-btn').removeClass('active');
+      $('#alphaAll').addClass('active');
+      renderResults();
+    }, 280);
+  });
+
+  // Search button
+  $('#searchBtn').on('click', function() {
+    state.query = $('#mainSearch').val().trim();
+    state.alpha = '';
+    $('#alphaBtns .alpha-btn').removeClass('active');
+    $('#alphaAll').addClass('active');
+    renderResults();
+  });
+
+  // Enter key
+  $('#mainSearch').on('keydown', function(e) {
+    if (e.key === 'Enter') $('#searchBtn').trigger('click');
+  });
+
+  // Quick links
+  $('.quick-link').on('click', function() {
+    const q = $(this).text();
+    $('#mainSearch').val(q);
+    state.query = q;
+    renderResults();
+  });
+
+  // Scope change
+  $('#searchScope').on('change', function() { renderResults(); });
+
+  // Type checkboxes
+  $(document).on('change', '.type-filter', function() {
+    const val = $(this).val();
+    if ($(this).is(':checked')) {
+      if (!state.types.includes(val)) state.types.push(val);
+    } else {
+      state.types = state.types.filter(t => t !== val);
+    }
+    renderResults();
+  });
+
+  // Subject dropdown
+  $('#subjectFilter').on('change', function() {
+    state.subject = $(this).val();
+    renderResults();
+  });
+
+  // Access checkboxes
+  $(document).on('change', '.access-filter', function() {
+    const val = $(this).val();
+    if ($(this).is(':checked')) {
+      if (!state.access.includes(val)) state.access.push(val);
+    } else {
+      state.access = state.access.filter(a => a !== val);
+    }
+    renderResults();
+  });
+
+  // Year
+  $('#yearFilter').on('change', function() {
+    state.year = $(this).val();
+    renderResults();
+  });
+
+  // Sort
+  $('#sortSelect').on('change', function() {
+    state.sort = $(this).val();
+    renderResults();
+  });
+
+  // Alphabet buttons — check .disabled inside handler, NOT in the selector
+  // Using :not(.disabled) in the selector caused letters to stay unclickable
+  // after updateAlphaCounts marked them disabled on a previous render pass
+  $(document).on('click', '.alpha-btn', function() {
+    if ($(this).hasClass('disabled')) return;   // safely ignore truly disabled letters
+    const letter = $(this).data('letter');
+    if (state.alpha === letter) {
+      // clicking the active letter again → deselect (show all)
+      state.alpha = '';
+      $(this).removeClass('active');
+      $('#alphaAll').addClass('active');
+    } else {
+      state.alpha = letter;
+      $('#alphaBtns .alpha-btn').removeClass('active');
+      $('#alphaAll').removeClass('active');
+      $(this).addClass('active');
+    }
+    renderResults();
+  });
+
+  // Alpha "All"
+  $('#alphaAll').on('click', function() {
+    state.alpha = '';
+    $(this).addClass('active');
+    $('#alphaBtns .alpha-btn').removeClass('active');
+    renderResults();
+  });
+
+  // Clear all
+  $('#clearAllFilters, #clearAllFiltersBtn').on('click', clearAll);
+
+  // Remove chip
+  $(document).on('click', '.remove-chip', function() {
+    removeChip($(this).data('key'), $(this).data('val'));
+  });
+
+  // View toggle
+  $('#listViewBtn').on('click', function() {
+    $(this).addClass('active');
+    $('#gridViewBtn').removeClass('active');
+    $('#itemsArea').removeClass('grid-view');
+  });
+  $('#gridViewBtn').on('click', function() {
+    $(this).addClass('active');
+    $('#listViewBtn').removeClass('active');
+    $('#itemsArea').addClass('grid-view');
+  });
+
+  // Mobile sidebar
+  $('#mobileFilterBtn').on('click', function() {
+    $('#sidebar').addClass('open');
+    $('#sidebarBackdrop').addClass('show');
+    $('body').css('overflow', 'hidden');
+  });
+  $('#closeSidebar, #sidebarBackdrop').on('click', function() {
+    $('#sidebar').removeClass('open');
+    $('#sidebarBackdrop').removeClass('show');
+    $('body').css('overflow', '');
+  });
+
+  // Collapsible filter sections
+  initCollapsible();
+});
+</script>
+</body>
+</html>
