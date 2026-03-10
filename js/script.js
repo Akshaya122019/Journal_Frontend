@@ -2,8 +2,8 @@
 //  DATA – 80 sample items
 // ============================================================
 const DATA = [
-  { id:1,  slug:"acta-materialia",                           title:"Acta Materialia",                          type:"journal",   subject:"Materials Science",                   access:"subscription", year:2023, issn:"1359-6454" },
-  { id:2,  slug:"advanced-drug-delivery-reviews",            title:"Advanced Drug Delivery Reviews",           type:"journal",   subject:"Pharmacology",                        access:"open",         year:2024, issn:"0169-409X" },
+  { id:1,  slug:"JGEGI",                                    title:"Geotechnical Engineering and Ground Innovation",                          type:"journal",   subject:"Materials Science",                   access:"", year:2023, issn:"" },
+  { id:2,  slug:"advanced-drug-delivery-reviews",           title:"Environmental Engineering, Sustainability, and Policy Studies",           type:"journal",   subject:"Pharmacology",                        access:"open",         year:2024, issn:"0169-409X" },
   { id:3,  slug:"algebra-and-its-applications",             title:"Algebra and Its Applications",             type:"textbook",  subject:"Mathematics",                         access:"subscription", year:2021, issn:"" },
   { id:4,  slug:"annual-review-of-astronomy",               title:"Annual Review of Astronomy",               type:"journal",   subject:"Physics",                             access:"subscription", year:2023, issn:"0066-4146" },
   { id:5,  slug:"applied-mathematics-and-computation",      title:"Applied Mathematics and Computation",      type:"journal",   subject:"Mathematics",                         access:"open",         year:2024, issn:"0096-3003" },
