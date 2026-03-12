@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal of Computer Technology</title>
+    <link href="images/jncir-1.jpg" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-top bg-white">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="#">
+                <img src="images/logo.png" height="50" alt="Logo"> Nethrax Publisher
+            </a>
+            <div class="d-flex align-items-center">
+                <span class="me-3 small d-none d-sm-inline">Sign in</span>
+                <button class="btn btn-outline-dark btn-sm">Register</button>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Sticky Navbar (Hidden Initially) -->
+    <nav id="stickyNav" class="navbar navbar-expand-lg fixed-top d-none" style="background-color:#002d54;">
+        <div class="container">
+            <div class="row w-100">
+                <div class="col-md-10 p-2">
+                    <a class="navbar-brand text-white fw-bold fs-4" href="#">Journal of Computer Technology</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="navbar-brand text-white btn btn-dark " href="#">Submit Your Article</a>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <header class="journal-header" style="background-color: #0d1920;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-2 col-md-3 d-none d-md-block">
+                    <img src="images/JCT.jpg" class="img-fluid shadow" alt="Journal Cover">
+                </div>
+                <div class="col-lg-10 col-md-9">
+                    <h3 class=" mb-2">Journal of Computer Technology</h3>
+                    <div class="d-flex align-items-center cite-score-box">
+                        <span class="me-3"><strong>-</strong> CiteScore</span>
+                        <span class="me-3">|</span>
+                        <span><strong>-</strong> Impact Factor</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg journal-nav p-0 sticky-top" id="secondaryNav" style="top:56px;">
+        <div class="container px-0 px-lg-3">
+            <div class="d-flex w-100 d-lg-none justify-content-between align-items-center px-3 py-2">
+                <span class="fw-bold small">JOURNAL MENU</span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#journalContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="journalContent">
+                <ul class="navbar-nav w-100">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" id="articlesNav" role="button"
+                            data-bs-toggle="dropdown">
+                            Articles & Issues <i class="bi bi-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Latest issue</a></li>
+                            <li><a class="dropdown-item" href="#">All issues</a></li>
+                            <li><a class="dropdown-item" href="#">Articles in press</a></li>
+                            <li><a class="dropdown-item" href="#">Special issues</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutNav" role="button"
+                            data-bs-toggle="dropdown">
+                            About <i class="bi bi-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">About the journal</a></li>
+                            <li><a class="dropdown-item" href="#">Editorial board</a></li>
+                            <li><a class="dropdown-item" href="#">Aims and scope</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="publishNav" role="button"
+                            data-bs-toggle="dropdown">
+                            Publish <i class="bi bi-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Guide for authors</a></li>
+                            <li><a class="dropdown-item" href="#">Submit your article</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Order journal <i class="bi bi-arrow-up-right ms-1"></i></a>
+                    </li>
+
+                    <li class="nav-item flex-grow-1">
+                        <div class="search-container">
+                            <i class="bi bi-search text-primary"></i>
+                            <input type="text" class="form-control search-input" placeholder="Search in this journal">
+                        </div>
+                    </li>
+
+                    <li class="nav-item d-none d-lg-block">
+                        <a href="#" class="nav-link text-nowrap">Guide for authors<i
+                                class="bi bi-arrow-up-right"></i></a>
+                    </li>
+
+                    <li class="d-lg-none">
+                        <a href="#" class="action-link-mobile">Submit your article</a>
+                        <a href="#" class="action-link-mobile">Guide for authors</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About the Journal -->
+    <div class="container-fluid pt-4">
+        <div class="row">
+            <div class="col-md-7 p-5" style="background-color: #f5f5f5;">
+                <div class="abt-con">
+                    <h2 class="fs-4">About the Journal</h2>
+                    <p>The Journal of Computer Technology (JCT) is an international platform for researchers, academicians, and industry professionals to publish high-quality and original research in the broad domain of computer technology and information systems. The journal focuses on the development of theoretical foundations, experimental studies, and practical applications of computing technologies....</p>
+                    <button id="openPopup" class="border-0 popup text-primary">
+                        View Aims & Scope
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-5 ps-lg-5 pt-3">
+                <div class="text-justify">
+                    <h2 class="fs-4">Article publishing options</h2>
+                    <h3 class="">Open Access</h3>
+                    <p class="fs-6 text-muted">
+                        Article Publishing Charge (APC): USD - (excluding taxes).<br>
+                        The amount you pay may be reduced during submission if applicable.
+                    </p>
+                    <a href="#" class="text-primary text-decoration-none small fw-bold">Review this journal's open
+                        access policy.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay"></div>
+
+    <!-- Side Popup -->
+    <div id="sidePopup">
+        <div class="popup-header">
+            <h4 class="mb-0">Aims & Scope</h4>
+            <button class="btn btn-sm btn-danger" id="closePopup">✕</button>
+        </div>
+
+        <!-- BODY (scrollable content) -->
+        <div class="popup-body">
+            <h4>Aim: </h4>
+            <p class="lh-lg fss">
+                <b>The Journal of Computer Technology (JCT)</b> is an international platform for researchers, academicians, and industry professionals to publish high-quality and original research in the broad domain of computer technology and information systems. The journal focuses on the development of theoretical foundations, experimental studies, and practical applications of computing technologies.
+            </p>
+            <h4>Scope: </h4>
+            <p class="lh-lg fss">
+                JCT focuses on innovative solutions for complex real-world problems using modern computing approaches, advanced algorithms, and emerging digital technologies. The journal promotes interdisciplinary research that bridges theory and practice, thereby advancing research in <b>computer science, software systems, intelligent computing, data-driven technologies, and next-generation computing applications.</b>
+            </p>
+            <h4>Scope: </h4>
+            <p class="lh-lg fss">The coverage of The Journal of Computer Technology (JCT) includes a broad spectrum of interdisciplinary research work related to contemporary computing technologies and information systems. The journal concentrates on the use of advanced computing techniques by integrating concepts from machine learning, data science, cloud computing, cybersecurity, blockchain technologies, Internet of Things (IoT), natural language processing, and emerging computing paradigms.</p>
+            <p class="lh-lg fss">The JCT calls for original research work that highlights algorithm development, system design, scalable computing models, secure and intelligent applications, and data-driven solutions for complex real-world problems. The journal encourages research contributions that integrate theoretical concepts with practical implementations, promoting innovation in next-generation computer technologies.</p>
+            <p class="lh-lg fss">The scope of the journal includes, but is not limited to, the following areas:</p>
+            <p class="lh-lg fss">Major Topics: </p>
+            <ul class="fss pop-list">
+                <li>Cybersecurity and Privacy</li>
+                <li>Artificial Intelligence and Machine Learning</li>
+                <li>Data Science and Big Data</li>
+                <li>Cloud Computing and Virtualization</li>
+                <li>Human-Computer Interaction (HCI)</li>
+                <li>Internet of Things (IoT)</li>
+                <li>Blockchain</li>
+                <li>Networking and Communication Systems</li>
+                <li>Computational Finance and Financial Technology (FinTech)</li>
+                <li>Augmented Reality (AR) and Virtual Reality (VR)</li>
+                <li>Natural Language Processing (NLP)</li>
+                <li>Edge Computing and Fog Computing</li>
+                <li>Computer Vision and Image Processing</li>
+                <li>Quantum Computing and Quantum Information Science</li>
+            </ul>
+            <p class="lh-lg fss">
+                Authors are invited to submit original research articles, comprehensive reviews, and innovative methodologies that contribute significantly to the advancement of the field.
+            </p>
+        </div>
+    </div>
+
+    <div class="carousel-section-container pt-5">
+        <h2 class="fs-4 p-3">Related Journals</h2>
+
+        <div class="owl-carousel owl-theme feature-carousel">
+            <div class="item">
+                <div class="feature-card card h-100">
+                    <div class="feature-card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500" alt="Technology" class="feature-card-img">
+                    </div>
+                    <div class="feature-card-body">
+                        <h5 class="feature-card-title">Journal of Soft Computing and Explainable Intelligence</h5>
+                        <p class="feature-card-text">Focuses on soft computing techniques in real-world applications and
+                            theory.</p>
+                        <a href="#" class="feature-card-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="feature-card card h-100">
+                    <div class="feature-card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500" alt="Business"
+                            class="feature-card-img">
+                    </div>
+                    <div class="feature-card-body">
+                        <h5 class="feature-card-title">International Journal of Strategic Business Dynamics</h5>
+                        <p class="feature-card-text">Covers traditional AI, neural networks, soft computing, and hybrid intelligent methods</p>
+                        <a href="#" class="feature-card-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="item">
+                <div class="feature-card card h-100">
+                    <div class="feature-card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500" alt="Analytics" class="feature-card-img">
+                    </div>
+                    <div class="feature-card-body">
+                        <h5 class="feature-card-title">Journal of Energy Storage and Control Systems</h5>
+                        <p class="feature-card-text">Broad AI and soft computing topics including fuzzy and neural network</p>
+                        <a href="#" class="feature-card-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="feature-card card h-100">
+                    <div class="feature-card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=500" alt="Design"
+                            class="feature-card-img">
+                    </div>
+                    <div class="feature-card-body">
+                        <h5 class="feature-card-title">Journal of Smart Grid and Quantum Energy Innovation
+                        </h5>
+                        <p class="feature-card-text">AI and computation research with broad relevance to explainable
+                            models.</p>
+                        <a href="#" class="feature-card-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="feature-card card h-100">
+                    <div class="feature-card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=500" alt="Design"
+                            class="feature-card-img">
+                    </div>
+                    <div class="feature-card-body">
+                        <h5 class="feature-card-title">Journal of Power Electronics and Electric Vehicle Integration
+                        </h5>
+                        <p class="feature-card-text">AI and computation research with broad relevance to explainable
+                            models.</p>
+                        <a href="#" class="feature-card-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <footer class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5>For authors</h5>
+                    <ul>
+                        <li><a href="#">Resources for authors ↗</a></li>
+                        <li><a href="#">Track your accepted paper ↗</a></li>
+                        <li><a href="#">Journal Finder ↗</a></li>
+                        <li><a href="#">Researcher Academy ↗</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>For editors</h5>
+                    <ul>
+                        <li><a href="#">Resources for editors ↗</a></li>
+                        <li><a href="#">Guest editors ↗</a></li>
+                        <li><a href="#">Resources for editors ↗</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>For reviewers</h5>
+                    <ul>
+                        <li><a href="#">Resources for reviewers ↗</a></li>
+                        <li><a href="#">Reviewer recognition ↗</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons mb-3">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                    <p>Subscribe to our newsletter</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-dark btn-search">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Nethrax publishers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="feedback-btn"><i class="bi bi-chat-square-text me-2"></i> FEEDBACK</a>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Optional: Ensure the chevron rotates on mobile click too
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dd => {
+            dd.addEventListener('show.bs.dropdown', function () {
+                this.querySelector('.bi-chevron-down').style.transform = 'rotate(180deg)';
+            });
+            dd.addEventListener('hide.bs.dropdown', function () {
+                this.querySelector('.bi-chevron-down').style.transform = 'rotate(0deg)';
+            });
+        });
+    </script>
+    <script>
+        const stickyNav = document.getElementById("stickyNav");
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 150) {
+                stickyNav.classList.remove("d-none");
+            } else {
+                stickyNav.classList.add("d-none");
+            }
+        });
+    </script>
+    <script>
+        $("#openPopup").click(function () {
+            $("#sidePopup").addClass("active");
+            $("#overlay").fadeIn(200);
+            $("body").addClass("no-scroll");   // 🔑 hide outer scroll
+        });
+
+        $("#closePopup, #overlay").click(function () {
+            $("#sidePopup").removeClass("active");
+            $("#overlay").fadeOut(200);
+            $("body").removeClass("no-scroll"); // 🔑 restore scroll
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.feature-carousel').owlCarousel({
+                loop: true,
+                margin: 20,
+                nav: true,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                smartSpeed: 800,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -2,17 +2,26 @@
 //  DATA – 80 sample items
 // ============================================================
 const DATA = [
-  { id:1,  slug:"JGEGI",                                    title:"Geotechnical Engineering and Ground Innovation",                          type:"journal",   subject:"Materials Science",                   access:"", year:2023, issn:"" },
-  { id:2,  slug:"advanced-drug-delivery-reviews",           title:"Environmental Engineering, Sustainability, and Policy Studies",           type:"journal",   subject:"Pharmacology",                        access:"open",         year:2024, issn:"0169-409X" },
-  { id:3,  slug:"algebra-and-its-applications",             title:"Algebra and Its Applications",             type:"textbook",  subject:"Mathematics",                         access:"subscription", year:2021, issn:"" },
-  { id:4,  slug:"annual-review-of-astronomy",               title:"Annual Review of Astronomy",               type:"journal",   subject:"Physics",                             access:"subscription", year:2023, issn:"0066-4146" },
-  { id:5,  slug:"applied-mathematics-and-computation",      title:"Applied Mathematics and Computation",      type:"journal",   subject:"Mathematics",                         access:"open",         year:2024, issn:"0096-3003" },
-  { id:6,  slug:"artificial-intelligence",                  title:"Artificial Intelligence",                  type:"journal",   subject:"Computer Science",                    access:"subscription", year:2023, issn:"0004-3702" },
-  { id:7,  slug:"atlas-of-human-anatomy",                   title:"Atlas of Human Anatomy",                   type:"reference", subject:"Medicine",                            access:"subscription", year:2022, issn:"" },
-  { id:8,  slug:"atmospheric-environment",                  title:"Atmospheric Environment",                  type:"journal",   subject:"Environmental Science",               access:"open",         year:2024, issn:"1352-2310" },
-  { id:9,  slug:"behavioural-brain-research",               title:"Behavioural Brain Research",               type:"journal",   subject:"Neuroscience",                        access:"subscription", year:2023, issn:"0166-4328" },
-  { id:10, slug:"biochemistry-a-short-course",              title:"Biochemistry: A Short Course",             type:"textbook",  subject:"Biochemistry",                        access:"subscription", year:2022, issn:"" },
+  { id:1,  slug:"JGEGI",                                    title:"Journal of Geotechnical Engineering and Ground Innovation",                          type:"journal",   subject:"Materials Science", access:"open",                  access:"open", year:2023, issn:"" },
+  { id:2,  slug:"IJSBD",           title:"International Journal of Strategic Business Dynamics",           type:"journal",   subject:"Business Management",                        access:"open",         year:2024, issn:"0169-409X" },
+  { id:3,  slug:"JCT",             title:"Journal of Computer Technology",             type:"journal",  subject:"Computer Science",                         access:"open", year:2021, issn:"" },
+
+  { id:4,  slug:"JEESPS",               title:"Journal of Environmental Engineering, Sustainability, and Policy Studies",               type:"journal",   subject:"Environmental Science",                             access:"open", year:2023, issn:"0066-4146" },
+
+  { id:5,  slug:"JESCS",      title:"Energy Storage and Control Systems",      type:"journal",   subject:"Engineering",                         access:"open",         year:2024, issn:"0096-3003" },
+
+  { id:6,  slug:"JNCIR",                  title:"Journal of Neural Computing and Intelligent Research",                  type:"journal",   subject:"Computer Science",                    access:"open", year:2023, issn:"0004-3702" },
+
+  { id:7,  slug:"JPEEVI",                   title:"Journal of Power Electronics and Electric Vehicle",                   type:"reference", subject:"Engineering",                            access:"open", year:2022, issn:"" },
+
+  { id:8,  slug:"JSCEI",                  title:"Journal of Soft Computing and Explainable Intelligence",                  type:"journal",   subject:"Computer Science",               access:"open",         year:2024, issn:"1352-2310" },
+
+  { id:9,  slug:"JSEAS",               title:"Journal of Structural Engineering and Advanced Systems",               type:"journal",   subject:"Engineering",                        access:"open", year:2023, issn:"0166-4328" },
+
+  { id:10, slug:"JSGQEI",              title:"Journal of Smart Grid and Quantum Energy Innovation",             type:"journal",  subject:"Biochemistry",                        access:"open", year:2022, issn:"" },
+
   { id:11, slug:"biochimica-et-biophysica-acta",            title:"Biochimica et Biophysica Acta",            type:"journal",   subject:"Biochemistry",                        access:"open",         year:2024, issn:"0006-3002" },
+  
   { id:12, slug:"bioresource-technology",                   title:"Bioresource Technology",                   type:"journal",   subject:"Energy",                              access:"subscription", year:2023, issn:"0960-8524" },
   { id:13, slug:"brain-and-cognition",                      title:"Brain and Cognition",                      type:"journal",   subject:"Neuroscience",                        access:"open",         year:2024, issn:"0278-2626" },
   { id:14, slug:"business-ethics-reference",                title:"Business Ethics Reference",                type:"reference", subject:"Business Management",                 access:"subscription", year:2021, issn:"" },
@@ -299,7 +308,7 @@ function buildCard(item) {
     ? '<span class="open-access">🔓 Open Access</span>'
     : '';
   return `
-    <a class="item-card" href="detail/${item.slug}.html">
+    <a class="item-card" href="journals/${item.slug}.html">
       <div class="card-icon ${ti.cls}">
         <i class="bi ${ti.icon}"></i>
       </div>
